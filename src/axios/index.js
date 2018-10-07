@@ -1,5 +1,6 @@
 import axios from 'axios'
-// import store from '~/store'
+import router from '~/router'
+import store from '~/store'
 
 export function createAxios (baseURL) {
   const axiosObj = axios.create({
@@ -31,7 +32,21 @@ export function createAxios (baseURL) {
       return response
     },
     error => {
-      return Promise.reject(error)
+      let res = error.response
+      switch (res.status) {
+        case 401:
+          console.log('未登录 或者token过期')
+          store.commit(types.LOGOUT)
+          router.replace({
+            path: '/login',
+            query: {redirect: router.currentRoute.fullPath}
+          })
+        case 403:
+          console.log('您没有该操作权限')
+        case 500:
+          console.log('服务器错误')
+      }
+      return Promise.reject(error.response.data)
     }
   )
 
