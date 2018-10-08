@@ -1,21 +1,35 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import huhupaHome from '~/components/huhupaHome'
+// import huhupaHome from '~/components/huhupaHome'
+import Layout from '~/views/layout/Layout'
+// import Layout from '~/views/layout/Layout.vue'
+// import Home from '~/views/home/Home.vue'
+// import User from '~/views/manage/user/User.vue'
 
 Vue.use(Router)
 
+export const normalRouters = [
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      // {
+      //   path: '/home',
+      //   name: 'home',
+      //   component: Home
+      // },
+      // {
+      //   path: '/user',
+      //   name: 'user',
+      //   component: User
+      // }
+    ]
+  }
+]
+
 var router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'huhupaHome',
-      component: huhupaHome,
-      meta: {
-        title: '呼呼趴首页',
-        requiresAuth: false
-      }
-    }
-  ]
+  mode: 'history',
+  routes: normalRouters
 })
 
 // 路由前执行
