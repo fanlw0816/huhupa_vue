@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  background: #ddd;
+  border: none;
+  height: 1px
+}
+
+.gutter {
+  background-color: #eef1f6;
+}
+
+div.view-wraper {
+  margin: 1em;
+}
+
+a {
+  text-decoration: none!important;
+}
+
+.el-button:focus {
+  outline: none;
+}
+
+.el-form-item {
+  float: left;
+}
+
+.treeStyle .el-tree-node__content {
+  height: auto;
+}
+
+.el-table .success-row {
+  background-color: #e8e8e8 !important;
+}
+
+.router-link-active {
+  text-decoration: none;
+}
+.w-e-text-container {
+  height: 60px;
+}
+
+.form-input-width {
+  width: 200px
+}
+
+.categoryArea {
+  border: 1px solid #eeeeee;
+  margin: 0 0 10px;
+  padding: 10px 10px;
+}
+
+.box-view-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 2px;
+  border: 1px solid #dddddd;
+  border-radius: unset;
+  .el-card__header {
+    padding: 5px 10px;
+    border-bottom: none;
+    .header {
+      background: #fff;
+      padding: 4px;
+      width: -webkit-fit-content;
+      width: -moz-fit-content;
+      width: fit-content;
+      margin-top: -30px;
+      position: absolute;
+    }
+  }
+  .el-card__body {
+    padding: 10px 20px;
+  }
+}
+
+.frame-style {
+  margin: 10px 20px;
+  padding: 10px 5px;
+  border: 1px solid #eeeeee;
+}
+
+.custom-tree-node .el-tag {
+  height: 24px;
+  line-height: 22px;
+}
+
+.portrait-list td {
+  padding: 2px 0 !important;
+}
