@@ -80,12 +80,11 @@ export const LEFT_MENU_CONFIG = [
             {'title': '账户管理', 'url': '/'},
             {'title': '发货地址管理', 'url': '/'}]},
         {
-          'title': '报表',
+          'title': '辅助属性',
           'elMenuItem': [
-            {'title': '销货订单跟踪', 'url': '/'},
-            {'title': '销货明细表', 'url': '/'},
-            {'title': '销货汇总表（按商品）', 'url': '/'},
-            {'title': '销货汇总表（按供应商）', 'url': '/'}]}
+            {'title': '计量单位', 'url': '/'},
+            {'title': '加工类型', 'url': '/'},
+            {'title': '基材类型', 'url': '/'}]}
       ]
   }, {
     'title': '设 置',

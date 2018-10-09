@@ -7,7 +7,6 @@
         <el-main><app-main></app-main></el-main>
       </el-container>
     </el-container>
-    <!-- <sidebar></sidebar> -->
   </div>
 </template>
 
@@ -34,6 +33,7 @@ export default {
   }
   .el-aside {
     background-color: #2d373c;
+    height: 100%
   }
   .el-dropdown-menu {
     left: 200px;
