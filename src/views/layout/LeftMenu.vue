@@ -2,7 +2,7 @@
   <div class="left-menu">
     <el-row class="tac">
       <el-col :span="12" style="width: 100%">
-        <h5 @click="go('/')" class="left-menu-header" style="color: rgb(255, 255, 255); text-align:center;line-height: 60px">呼呼啪ERP</h5>
+        <h5 @click="go('/')" class="left-menu-header" style="">呼呼啪ERP</h5>
         <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                   background-color="#2d373c" text-color="#fff" active-text-color="#ffd04b">
           <el-menu-item :index="(index + 1 ) + ''" v-for="(leftMenu, index) in leftMenuConfig" :key="leftMenu.title + '-' + index">
@@ -13,7 +13,7 @@
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <div style="background-color: #dfe4ed;">
-                      <ul style="padding-inline-start: 0px; float: left; width: 200px;"
+                      <ul style="padding-inline-start: 0px; float: left; width: 200px; padding-left: 0px;"
                           v-for="(elMenuItemGroup, index2) in leftMenu.elMenuItemGroups" :key="elMenuItemGroup.title + '-' + index + '-' + index2 ">
                         <h5 style="padding-left: 20px; font-size: 16px;">{{elMenuItemGroup.title}}</h5>
                         <li style="list-style:none;" :index="index + '-' + index2 + '-' + index3"
@@ -25,8 +25,6 @@
                     </div>
                   </el-dropdown-menu>
                 </el-dropdown>
-              <!--</el-col>-->
-            <!--</el-row>-->
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -35,7 +33,6 @@
 </template>
 
 <script>
-// import { mapState, mapGetters, mapActions } from 'vuex'
 import { LEFT_MENU_CONFIG } from '~/utils/global'
 
 export default {
@@ -86,6 +83,11 @@ export default {
   .left-menu-header {
     height: 60px;
     cursor: pointer;
+    color: rgb(255, 255, 255);
+    text-align:center;
+    line-height: 60px;
+    font-size: 16px;
+    margin: 0;
   }
   .left-menu-item-detail {
     border: 4px solid #c7c7c7;
