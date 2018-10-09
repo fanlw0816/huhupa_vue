@@ -5,27 +5,29 @@
         <h5 @click="go('/')" class="left-menu-header" style="">呼呼啪ERP</h5>
         <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                   background-color="#2d373c" text-color="#fff" active-text-color="#ffd04b">
-          <el-menu-item :index="(index + 1 ) + ''" v-for="(leftMenu, index) in leftMenuConfig" :key="leftMenu.title + '-' + index">
-            <i :class="leftMenu.icon"></i>
-                <el-dropdown placement="right-start">
-                  <span class="el-dropdown-link" style="height:100%; width: 100%">
+          <template v-for="(leftMenu, index) in leftMenuConfig">
+            <el-dropdown placement="right-start" :key="leftMenu.title + '-' + index">
+              <el-menu-item :index="(index + 1 ) + ''">
+                <i :class="leftMenu.icon"></i>
+                <span class="el-dropdown-link" style="height:100%; width: 100%">
                   {{leftMenu.title}}
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <div style="background-color: #dfe4ed;">
-                      <ul style="padding-inline-start: 0px; float: left; width: 200px; padding-left: 0px;"
-                          v-for="(elMenuItemGroup, index2) in leftMenu.elMenuItemGroups" :key="elMenuItemGroup.title + '-' + index + '-' + index2 ">
-                        <h5 style="padding-left: 20px; font-size: 16px;">{{elMenuItemGroup.title}}</h5>
-                        <li style="list-style:none;" :index="index + '-' + index2 + '-' + index3"
-                            v-for="(elMenuItem, index3) in elMenuItemGroup.elMenuItem"
-                            :key="elMenuItem.title + '-' + index + '-' + index2 + '-' + index3" @click="go(elMenuItem.url)">
-                          <el-dropdown-item @click="go(elMenuItem.url)">{{elMenuItem.title}}</el-dropdown-item>
-                        </li>
-                      </ul>
-                    </div>
-                  </el-dropdown-menu>
-                </el-dropdown>
-          </el-menu-item>
+                </span>
+              </el-menu-item>
+              <el-dropdown-menu slot="dropdown">
+                <div style="background-color: #dfe4ed;">
+                  <ul style="padding-inline-start: 0px; float: left; width: 200px; padding-left: 0px;"
+                      v-for="(elMenuItemGroup, index2) in leftMenu.elMenuItemGroups" :key="elMenuItemGroup.title + '-' + index + '-' + index2 ">
+                    <h5 style="padding-left: 20px; font-size: 16px;">{{elMenuItemGroup.title}}</h5>
+                    <li style="list-style:none;" :index="index + '-' + index2 + '-' + index3"
+                        v-for="(elMenuItem, index3) in elMenuItemGroup.elMenuItem"
+                        :key="elMenuItem.title + '-' + index + '-' + index2 + '-' + index3" @click="go(elMenuItem.url)">
+                      <el-dropdown-item @click="go(elMenuItem.url)">{{elMenuItem.title}}</el-dropdown-item>
+                    </li>
+                  </ul>
+                </div>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </template>
         </el-menu>
       </el-col>
     </el-row>
@@ -97,5 +99,8 @@ export default {
     position: fixed;
     background: rgb(255,255,255);
     z-index: 999;
+  }
+  .el-dropdown {
+    width: 100%;
   }
 </style>
