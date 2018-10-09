@@ -12,6 +12,10 @@ export const normalRouters = [
   {
     path: '/',
     component: Layout,
+    meta: {
+      title: '首页',
+      requiresAuth: false
+    },
     children: [
       // {
       //   path: '/home',
