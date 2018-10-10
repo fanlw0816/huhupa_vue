@@ -38,4 +38,7 @@ export default {
   .el-dropdown-menu {
     left: 200px;
   }
+  .el-main {
+    padding: 10px 5px;
+  }
 </style>

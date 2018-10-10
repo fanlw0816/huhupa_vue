@@ -1,17 +1,15 @@
 <template>
   <div class="content">
-    <router-view></router-view>
-    <!--<div>这里是首页</div>-->
-    <!--<div style="margin-bottom: 20px;">-->
-      <!--<el-button size="small" @click="addTab(editableTabsValue2)" >-->
-        <!--add tab-->
-      <!--</el-button>-->
-    <!--</div>-->
-    <!--<el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">-->
-      <!--<el-tab-pane v-for="item in editableTabs2" :key="item.name" :label="item.title" :name="item.name">-->
-        <!--{{item.content}}-->
-      <!--</el-tab-pane>-->
-    <!--</el-tabs>-->
+    <!-- <div style="margin-bottom: 20px;">
+      <el-button size="small" @click="addTab(selectTabValue)" >
+        add tab
+      </el-button>
+    </div> -->
+    <el-tabs v-model="selectTabValue" type="border-card" @tab-remove="removeTab">
+      <el-tab-pane v-for="item in showTabs" :closable="item.isClosable" :key="item.name" :label="item.title" :name="item.index">
+        <router-view :name="item.name"></router-view>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -20,32 +18,35 @@ export default {
   name: 'AppMain',
   data () {
     return {
-      editableTabsValue2: '2',
-      editableTabs2: [{
+      selectTabValue: '1',
+      showTabs: [{
         title: '首页',
-        name: '1',
-        content: 'Tab 1 content'
-      }, {
-        title: '销售订单',
-        name: '2',
-        content: 'Tab 2 content'
+        name: 'home',
+        index: '1',
+        isClosable: false
+      },
+      {
+        title: '新选项卡',
+        name: 'newPage',
+        index: '2',
+        isClosable: true
       }],
-      tabIndex: 2
+      tabIndex: 1
     }
   },
   methods: {
-    addTab (targetName) {
-      let newTabName = ++this.tabIndex + ''
-      this.editableTabs2.push({
-        title: 'New Tab',
-        name: newTabName,
-        content: 'New Tab content'
-      })
-      this.editableTabsValue2 = newTabName
-    },
+    // addTab (targetName) {
+    //   let newTabName = ++this.tabIndex + ''
+    //   this.editableTabs2.push({
+    //     title: 'New Tab',
+    //     name: newTabName,
+    //     content: 'New Tab content'
+    //   })
+    //   this.editableTabsValue2 = newTabName
+    // },
     removeTab (targetName) {
-      let tabs = this.editableTabs2
-      let activeName = this.editableTabsValue2
+      let tabs = this.showTabs
+      let activeName = this.selectTabValue
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
           if (tab.name === targetName) {
@@ -56,8 +57,8 @@ export default {
           }
         })
       }
-      this.editableTabsValue2 = activeName
-      this.editableTabs2 = tabs.filter(tab => tab.name !== targetName)
+      this.selectTabValue = activeName
+      this.showTabs = tabs.filter(tab => tab.index !== targetName)
     }
   }
 }

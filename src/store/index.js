@@ -4,7 +4,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  currentUser: null
+  currentUser: null,
+  tabsData: [
+    {
+      title: '首页',
+      name: 'home',
+      index: '1',
+      isClosable: false
+    }
+  ]
 }
 
 const muatations = {

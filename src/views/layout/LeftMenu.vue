@@ -43,6 +43,7 @@ export default {
   },
   data () {
     return {
+      isCollapse: true,
       helpDocument: '',
       showData: {
         isSubShow: false,
@@ -90,6 +91,9 @@ export default {
     line-height: 60px;
     font-size: 16px;
     margin: 0;
+  }
+  .el-menu-vertical-demo {
+    border: 0px;
   }
   .left-menu-item-detail {
     border: 4px solid #c7c7c7;
