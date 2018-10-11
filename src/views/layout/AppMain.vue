@@ -1,12 +1,7 @@
 <template>
   <div class="content">
-    <!-- <div style="margin-bottom: 20px;">
-      <el-button size="small" @click="addTab(selectTabValue)" >
-        add tab
-      </el-button>
-    </div> -->
-    <el-tabs v-model="selectTabValue" type="border-card" @tab-remove="removeTab">
-      <el-tab-pane v-for="item in showTabs" :closable="item.isClosable" :key="item.name" :label="item.title" :name="item.index">
+    <el-tabs v-model="selectIndex" type="border-card" @tab-remove="removeTab">
+      <el-tab-pane v-for="item in tabsData" :closable="item.isClosable" :key="item.name" :label="item.title" :name="item.index">
         <router-view :name="item.name"></router-view>
       </el-tab-pane>
     </el-tabs>
@@ -14,51 +9,46 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'AppMain',
   data () {
     return {
-      selectTabValue: '1',
-      showTabs: [{
-        title: '首页',
-        name: 'home',
-        index: '1',
-        isClosable: false
-      },
-      {
-        title: '新选项卡',
-        name: 'newPage',
-        index: '2',
-        isClosable: true
-      }],
-      tabIndex: 1
+      selectIndex: '1'
     }
   },
+  watch: {
+    selectTabIndex: function () {
+      if (this.selectIndex === this.selectTabIndex) {
+        return
+      }
+      this.selectIndex = this.selectTabIndex
+    },
+    selectIndex: function () {
+      this.changeTabIndex(this.selectIndex)
+    }
+  },
+  computed: {
+    ...mapState(['tabsData', 'selectTabIndex'])
+  },
   methods: {
-    // addTab (targetName) {
-    //   let newTabName = ++this.tabIndex + ''
-    //   this.editableTabs2.push({
-    //     title: 'New Tab',
-    //     name: newTabName,
-    //     content: 'New Tab content'
-    //   })
-    //   this.editableTabsValue2 = newTabName
-    // },
-    removeTab (targetName) {
-      let tabs = this.showTabs
-      let activeName = this.selectTabValue
-      if (activeName === targetName) {
+    ...mapActions(['pushTabs', 'deleteTabs', 'changeTabIndex']),
+    removeTab (indexName) {
+      let tabs = this.tabsData
+      let activeIndex = this.selectTabIndex
+      if (activeIndex === indexName) {
         tabs.forEach((tab, index) => {
-          if (tab.name === targetName) {
+          if (tab.index === indexName) {
             let nextTab = tabs[index + 1] || tabs[index - 1]
             if (nextTab) {
-              activeName = nextTab.name
+              activeIndex = nextTab.index
             }
           }
         })
       }
-      this.selectTabValue = activeName
-      this.showTabs = tabs.filter(tab => tab.index !== targetName)
+      this.changeTabIndex(activeIndex)
+      this.deleteTabs([indexName])
     }
   }
 }
