@@ -2,7 +2,7 @@
   <div class="left-menu">
     <el-row class="tac">
       <el-col :span="12" style="width: 100%">
-        <h5 @click="go('/')" class="left-menu-header" style="">呼呼啪ERP</h5>
+        <h5 @click="openHome()" class="left-menu-header" style="">呼呼啪ERP</h5>
         <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                   background-color="#2d373c" text-color="#fff" active-text-color="#ffd04b">
           <template v-for="(leftMenu, index) in leftMenuConfig">
@@ -20,8 +20,8 @@
                     <h5 style="padding-left: 20px; font-size: 16px;">{{elMenuItemGroup.title}}</h5>
                     <li style="list-style:none;" :index="index + '-' + index2 + '-' + index3"
                         v-for="(elMenuItem, index3) in elMenuItemGroup.elMenuItem"
-                        :key="elMenuItem.title + '-' + index + '-' + index2 + '-' + index3" @click="go(elMenuItem.url)">
-                      <el-dropdown-item @click="go(elMenuItem.url)">{{elMenuItem.title}}</el-dropdown-item>
+                        :key="elMenuItem.title + '-' + index + '-' + index2 + '-' + index3" @click="openTab(elMenuItem)">
+                      <el-dropdown-item>{{elMenuItem.title}}</el-dropdown-item>
                     </li>
                   </ul>
                 </div>
@@ -36,13 +36,16 @@
 
 <script>
 import { LEFT_MENU_CONFIG } from '~/utils/global'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'LeftMenu',
   computed: {
+    ...mapState(['tabsData'])
   },
   data () {
     return {
+      isCollapse: true,
       helpDocument: '',
       showData: {
         isSubShow: false,
@@ -54,6 +57,20 @@ export default {
   created () {
   },
   methods: {
+    ...mapActions(['pushTabs', 'changeTabIndex']),
+    // addTab () {
+    //   let newTab = {
+    //     title: '新选项卡',
+    //     name: 'newPage',
+    //     index: '2',
+    //     isClosable: true
+    //   }
+    //   this.pushTabs(newTab)
+    //   this.selectTabValue = newTab.index
+    // },
+    openHome () {
+      this.changeTabIndex('1')
+    },
     enter () {
       console.log('yiru')
       this.showData.isSubShow = true
@@ -69,8 +86,22 @@ export default {
     handleClose () {
       console.log('chuli')
     },
-    go (url) {
-      this.$router.push(url)
+    openTab (item) {
+      let tempArr = this.tabsData.filter(i => {
+        return i.title === item.title
+      })
+      if (tempArr.length > 0) {
+        this.changeTabIndex(tempArr[0].index)
+      } else {
+        let newTab = {
+          title: item.title,
+          name: item.name,
+          index: parseInt(this.tabsData[this.tabsData.length - 1].index) + 1 + '',
+          isClosable: true
+        }
+        this.pushTabs(newTab)
+        this.changeTabIndex(newTab.index)
+      }
     }
   }
 }
@@ -90,6 +121,9 @@ export default {
     line-height: 60px;
     font-size: 16px;
     margin: 0;
+  }
+  .el-menu-vertical-demo {
+    border: 0px;
   }
   .left-menu-item-detail {
     border: 4px solid #c7c7c7;

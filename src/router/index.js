@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import huhupaHome from '~/components/huhupaHome'
+import huhupaHome from '~/views/common/huhupaHome'
 import Layout from '~/views/layout/Layout'
+import panePage from '~/views/common/panePage'
 // import Layout from '~/views/layout/Layout.vue'
 // import Home from '~/views/home/Home.vue'
 // import User from '~/views/manage/user/User.vue'
@@ -13,15 +14,23 @@ export const normalRouters = [
     path: '/',
     component: Layout,
     meta: {
-      title: '首页',
+      title: '呼呼趴ERP',
       requiresAuth: false
     },
+    redirect: '/panePage',
     children: [
-      // {
-      //   path: '/home',
-      //   name: 'home',
-      //   component: Home
-      // },
+      {
+        path: 'panePage',
+        name: 'panePage',
+        components: {
+          home: huhupaHome,
+          newPage: panePage
+        },
+        meta: {
+          title: '呼呼趴ERP',
+          requiresAuth: false
+        }
+      }
       // {
       //   path: '/user',
       //   name: 'user',
