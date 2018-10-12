@@ -61,7 +61,9 @@ export const LEFT_MENU_CONFIG = [
             {'title': '来货单统计', 'name': 'newPage', 'url': '/'},
             {'title': '出货单统计', 'name': 'newPage', 'url': '/'},
             {'title': '对账单报表', 'name': 'newPage', 'url': '/'},
-            {'title': '库存报表', 'name': 'newPage', 'url': '/'}]}
+            {'title': '库存报表', 'name': 'newPage', 'url': '/'}
+          ]
+        }
       ]
   }, {
     'title': '资 料',
@@ -72,9 +74,7 @@ export const LEFT_MENU_CONFIG = [
         {
           'title': '单据',
           'elMenuItem': [
-            {'title': '客户管理', 'name': 'newPage', 'url': '/'},
-            {'title': '供应商管理', 'name': 'newPage', 'url': '/'},
-            {'title': '商品管理', 'name': 'newPage', 'url': '/'},
+            {'title': '公司管理', 'name': 'newPage', 'url': '/'},
             {'title': '仓库管理', 'name': 'newPage', 'url': '/'},
             {'title': '职员管理', 'name': 'newPage', 'url': '/'},
             {'title': '账户管理', 'name': 'newPage', 'url': '/'},
@@ -82,9 +82,18 @@ export const LEFT_MENU_CONFIG = [
         {
           'title': '辅助属性',
           'elMenuItem': [
+            {'title': '公司类别', 'name': 'companyCategory', 'url': '/'},
+            {'title': '商品类别', 'name': 'newPage', 'url': '/'},
+            {'title': '支出类别', 'name': 'newPage', 'url': '/'},
+            {'title': '收入类别', 'name': 'newPage', 'url': '/'},
             {'title': '计量单位', 'name': 'newPage', 'url': '/'},
-            {'title': '加工类型', 'name': 'newPage', 'url': '/'},
-            {'title': '基材类型', 'name': 'newPage', 'url': '/'}]}
+            {'title': '结算方式', 'name': 'newPage', 'url': '/'},
+            {'title': '产品基材', 'name': 'newPage', 'url': '/'},
+            {'title': '生产类型', 'name': 'newPage', 'url': '/'},
+            {'title': '部门', 'name': 'newPage', 'url': '/'},
+            {'title': '学历', 'name': 'newPage', 'url': '/'}
+          ]
+        }
       ]
   }, {
     'title': '设 置',
