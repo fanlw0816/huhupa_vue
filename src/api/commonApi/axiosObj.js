@@ -1,5 +1,5 @@
 import { createAxios } from '~/axios'
 
-const fetch = createAxios('/api')
+const fetch = createAxios('/erp/api')
 
 export default fetch

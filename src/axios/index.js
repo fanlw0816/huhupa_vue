@@ -1,6 +1,6 @@
 import axios from 'axios'
-import router from '~/router'
-import store from '~/store'
+// import router from '~/router'
+// import store from '~/store'
 
 export function createAxios (baseURL) {
   const axiosObj = axios.create({
@@ -8,7 +8,7 @@ export function createAxios (baseURL) {
     timeout: 30 * 1000 // 超时时间
   })
 
-  axiosObj.defaults.headers.common['Accept'] = 'applition/json'
+  // axiosObj.defaults.headers.common['Accept'] = 'applition/json'
   axiosObj.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
   axiosObj.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
@@ -36,11 +36,10 @@ export function createAxios (baseURL) {
       switch (res.status) {
         case 401:
           console.log('未登录 或者token过期')
-          store.commit(types.LOGOUT)
-          router.replace({
-            path: '/login',
-            query: {redirect: router.currentRoute.fullPath}
-          })
+          // router.replace({
+          //   path: '/login',
+          //   query: {redirect: router.currentRoute.fullPath}
+          // })
           break
         case 403:
           console.log('您没有该操作权限')
