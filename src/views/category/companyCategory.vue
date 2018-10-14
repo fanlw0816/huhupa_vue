@@ -45,7 +45,7 @@
       :close-on-click-modal="false">
       <el-form size="mini" ref="catetoryForm" :model="catetoryForm" :rules="categoryRules" label-width="80px">
         <el-form-item label="分类名称" prop="name">
-          <el-input @keyup.enter="handleCatetory" v-model="catetoryForm.name"></el-input>
+          <el-input @keyup.enter="handleCatetory" v-model="catetoryForm.name" clearable></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -164,11 +164,11 @@ export default {
           if (resp.data.state === 1) {
             this.categorys = resp.data.data
           } else {
-            this.$message('请求失败')
+            this.$message.error(resp.data.message)
           }
         }
       ).catch(() => {
-        this.$message('请求失败')
+        this.$message.error('请求失败')
       })
     }
   }

@@ -6,6 +6,7 @@ import panePage from '~/views/common/panePage'
 import companyCategory from '~/views/category/companyCategory'
 import paymentMethod from '~/views/category/paymentMethod'
 import productCategory from '~/views/category/productCategory'
+import companyManage from '~/views/company/companyManage'
 // import Layout from '~/views/layout/Layout.vue'
 // import Home from '~/views/home/Home.vue'
 // import User from '~/views/manage/user/User.vue'
@@ -30,7 +31,8 @@ export const normalRouters = [
           newPage: panePage,
           companyCategory: companyCategory,
           paymentMethod: paymentMethod,
-          productCategory: productCategory
+          productCategory: productCategory,
+          companyManage: companyManage
         },
         meta: {
           title: '呼呼趴ERP',

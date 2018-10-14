@@ -2,6 +2,10 @@ a {
     text-decoration: none;
 }
 
+.full-width {
+    width: 100%;
+}
+
 // 自定义dialog样式
 .custom-dialog {
     .el-dialog__header {
@@ -20,6 +24,10 @@ a {
         border-top: 1px solid #ececec;
         padding: 6px;
         background: #f7f7f7;
+    }
+    .el-dialog__body {
+        max-height: 400px;
+        overflow: auto;
     }
 }
 

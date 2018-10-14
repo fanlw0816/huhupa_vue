@@ -74,7 +74,7 @@ export const LEFT_MENU_CONFIG = [
         {
           'title': '单据',
           'elMenuItem': [
-            {'title': '公司管理', 'name': 'newPage', 'url': '/'},
+            {'title': '公司管理', 'name': 'companyManage', 'url': '/'},
             {'title': '仓库管理', 'name': 'newPage', 'url': '/'},
             {'title': '职员管理', 'name': 'newPage', 'url': '/'},
             {'title': '账户管理', 'name': 'newPage', 'url': '/'},
