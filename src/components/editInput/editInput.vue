@@ -40,23 +40,15 @@ export default {
       showInput: false
     }
   },
-  directives: {
-    focus: {
-      update: function (el, {value}) {
-        if (value) {
-          el.focus()
-        }
-      }
-    }
-  },
   methods: {
     switchShow () {
       if (this.showInput) {
         this.showInput = false
       } else {
-        // console.log(this.$refs.editInput.focus)
-        this.$refs.editInput.focus()
         this.showInput = true
+        this.$nextTick(() => {
+          this.$refs.editInput.focus()
+        })
       }
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <!-- 选项卡 -->
     <el-tabs v-model="selectIndex" type="border-card" @tab-remove="removeTab">
       <el-tab-pane v-for="item in tabsData" :closable="item.isClosable" :key="item.name" :label="item.title" :name="item.index">
         <router-view :name="item.name"></router-view>
