@@ -15,3 +15,25 @@ export function getCompanyById (cid) {
     method: 'get'
   })
 }
+
+export function fetchAllCompany () {
+  return fetch({
+    url: `/company/getAll`,
+    method: 'get'
+  })
+}
+
+export function editCompany (data) {
+  return fetch({
+    url: '/company/edit',
+    method: 'put',
+    data
+  })
+}
+
+export function deleteCompany (pid) {
+  return fetch({
+    url: `/company/delete/${pid}`,
+    method: 'delete'
+  })
+}
