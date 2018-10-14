@@ -13,7 +13,7 @@
     <div class="content-center">
       <el-table
         class="custom-table"
-        :data="categorys"
+        :data="payments"
         border
         highlight-current-row>
         <el-table-column
@@ -38,46 +38,46 @@
     <!-- 添加和编辑框 -->
     <el-dialog
       class="custom-dialog"
-      :title="catetoryDialogTitle"
-      :visible.sync="categoryDialogVisible"
+      :title="paymethodsDialogTitle"
+      :visible.sync="paymethodsDialogVisible"
       width="30%"
       @close="closeDialog"
       :close-on-click-modal="false">
-      <el-form size="mini" ref="catetoryForm" :model="catetoryForm" :rules="categoryRules" label-width="80px">
+      <el-form size="mini" ref="paymethodsForm" :model="paymethodsForm" :rules="categoryRules" label-width="80px">
         <el-form-item label="分类名称" prop="name">
-          <el-input @keyup.enter="handleCatetory" v-model="catetoryForm.name"></el-input>
+          <el-input @keyup.enter="handlePaymentMethod" v-model="paymethodsForm.name"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="mini" @click="closeDialog">取 消</el-button>
-        <el-button v-if="catetoryDialogType === dialogType.add" size="mini" type="primary" @click="handleCatetory">添 加</el-button>
-        <el-button v-if="catetoryDialogType === dialogType.edit" size="mini" type="primary" @click="handleCatetory">提 交</el-button>
+        <el-button v-if="paymethodDialogType === dialogType.add" size="mini" type="primary" @click="handlePaymentMethod">添 加</el-button>
+        <el-button v-if="paymethodDialogType === dialogType.edit" size="mini" type="primary" @click="handlePaymentMethod">提 交</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchCompanyCategorys, addCompanyCategorys, editCompanyCategory, deleteCompanyCategory } from '~/api/commonApi/categorys'
+import { fetchPaymentMethods, addPaymentMethods, editPaymentMethods, deletePaymentMethods } from '~/api/commonApi/paymentMethod'
 import { DIALOG_TYPE } from '~/utils/params'
 
 export default {
-  name: 'companyCategory',
+  name: 'paymentMethod',
   data () {
     return {
       searchText: '',
-      categorys: [],
-      categoryDialogVisible: false,
-      catetoryForm: {
+      payments: [],
+      paymethodsDialogVisible: false,
+      paymethodsForm: {
         name: ''
       },
       categoryRules: {
         name: [{ required: true, message: '请输入名称', trigger: 'blur' }]
       },
-      catetoryDialogTitle: '新增分类',
-      catetoryDialogType: '',
+      paymethodsDialogTitle: '新增支付方式',
+      paymethodDialogType: '',
       dialogType: DIALOG_TYPE,
-      currentCatetory: ''
+      currentPaymentMethod: ''
     }
   },
   created () {
@@ -86,20 +86,20 @@ export default {
   methods: {
     // 关闭对话框
     closeDialog () {
-      this.$refs.catetoryForm.resetFields()
-      this.catetoryForm = {
+      this.$refs.paymethodsForm.resetFields()
+      this.paymethodsForm = {
         name: ''
       }
-      this.categoryDialogVisible = false
+      this.paymethodsDialogVisible = false
     },
     // 删除分类
     deleteCategory (data) {
       this.$confirm('确定删除?', '提示', {type: 'warning'}).then(_ => {
-        deleteCompanyCategory(data.id).then(
+        deletePaymentMethods(data.id).then(
           resp => {
             if (resp.data.state === 1) {
               this.$message.success(resp.data.message)
-              this.categorys = this.categorys.filter(item => {
+              this.payments = this.payments.filter(item => {
                 return item.id !== data.id
               })
             } else {
@@ -110,29 +110,29 @@ export default {
       }).catch(_ => {})
     },
     // 处理分类
-    handleCatetory () {
-      this.$refs.catetoryForm.validate((valid) => {
+    handlePaymentMethod () {
+      this.$refs.paymethodsForm.validate((valid) => {
         if (valid) {
-          if (this.catetoryDialogType === this.dialogType.edit) {
+          if (this.paymethodDialogType === this.dialogType.edit) {
             let params = {
-              id: this.currentCatetory.id,
-              name: this.catetoryForm.name
+              id: this.currentPaymentMethod.id,
+              name: this.paymethodsForm.name
             }
-            editCompanyCategory(params).then(
+            editPaymentMethods(params).then(
               resp => {
                 if (resp.data.state === 1) {
-                  this.currentCatetory.name = resp.data.data.name
+                  this.currentPaymentMethod.name = resp.data.data.name
                   this.closeDialog()
                 } else {
                   this.$message.error(resp.data.message)
                 }
               }
             ).catch(() => {})
-          } else if (this.catetoryDialogType === this.dialogType.add) {
-            addCompanyCategorys(this.catetoryForm).then(
+          } else if (this.paymethodDialogType === this.dialogType.add) {
+            addPaymentMethods(this.paymethodsForm).then(
               resp => {
                 if (resp.data.state === 1) {
-                  this.categorys.push(resp.data.data)
+                  this.payments.push(resp.data.data)
                   this.closeDialog()
                 } else {
                   this.$message.error(resp.data.message)
@@ -147,22 +147,22 @@ export default {
     },
     // 显示分类对话框
     showCategoryDialog (type, data) {
-      this.catetoryDialogType = type
+      this.paymethodDialogType = type
       if (type === this.dialogType.edit) {
-        this.catetoryDialogTitle = '编辑分类'
-        this.catetoryForm.name = data.name
-        this.currentCatetory = data
+        this.paymethodsDialogTitle = '编辑支付方式'
+        this.paymethodsForm.name = data.name
+        this.currentPaymentMethod = data
       } else if (type === this.dialogType.add) {
-        this.catetoryDialogTitle = '新增分类'
+        this.paymethodsDialogTitle = '新增支付方式'
       }
-      this.categoryDialogVisible = true
+      this.paymethodsDialogVisible = true
     },
     // 获取多有分类
     getCategorys () {
-      fetchCompanyCategorys().then(
+      fetchPaymentMethods().then(
         resp => {
           if (resp.data.state === 1) {
-            this.categorys = resp.data.data
+            this.payments = resp.data.data
           } else {
             this.$message('请求失败')
           }

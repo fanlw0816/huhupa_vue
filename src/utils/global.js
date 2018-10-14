@@ -83,11 +83,11 @@ export const LEFT_MENU_CONFIG = [
           'title': '辅助属性',
           'elMenuItem': [
             {'title': '公司类别', 'name': 'companyCategory', 'url': '/'},
-            {'title': '商品类别', 'name': 'newPage', 'url': '/'},
+            {'title': '商品类别', 'name': 'productCategory', 'url': '/'},
             {'title': '支出类别', 'name': 'newPage', 'url': '/'},
             {'title': '收入类别', 'name': 'newPage', 'url': '/'},
             {'title': '计量单位', 'name': 'newPage', 'url': '/'},
-            {'title': '结算方式', 'name': 'newPage', 'url': '/'},
+            {'title': '结算方式', 'name': 'paymentMethod', 'url': '/'},
             {'title': '产品基材', 'name': 'newPage', 'url': '/'},
             {'title': '生产类型', 'name': 'newPage', 'url': '/'},
             {'title': '部门', 'name': 'newPage', 'url': '/'},

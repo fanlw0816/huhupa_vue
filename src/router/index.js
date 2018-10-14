@@ -4,6 +4,8 @@ import huhupaHome from '~/views/common/huhupaHome'
 import Layout from '~/views/layout/Layout'
 import panePage from '~/views/common/panePage'
 import companyCategory from '~/views/category/companyCategory'
+import paymentMethod from '~/views/category/paymentMethod'
+import productCategory from '~/views/category/productCategory'
 // import Layout from '~/views/layout/Layout.vue'
 // import Home from '~/views/home/Home.vue'
 // import User from '~/views/manage/user/User.vue'
@@ -26,7 +28,9 @@ export const normalRouters = [
         components: {
           home: huhupaHome,
           newPage: panePage,
-          companyCategory: companyCategory
+          companyCategory: companyCategory,
+          paymentMethod: paymentMethod,
+          productCategory: productCategory
         },
         meta: {
           title: '呼呼趴ERP',
