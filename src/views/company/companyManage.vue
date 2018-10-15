@@ -40,7 +40,10 @@
           label="公司行业"
           width="80">
           <template slot-scope="scope">
-            {{ scope.row.companyCategory.name }}
+            <span v-if="scope.row.companyCategory">
+              {{ scope.row.companyCategory.name }}
+            </span>
+            <span v-else></span>
           </template>
         </el-table-column>
         <el-table-column
@@ -62,7 +65,10 @@
           label="结算方式"
           width="120">
           <template slot-scope="scope">
-            {{ scope.row.paymentMethod.name }}
+            <span v-if="scope.row.paymentMethod">
+              {{ scope.row.paymentMethod.name }}
+            </span>
+            <span v-else></span>
           </template>
         </el-table-column>
         <el-table-column
